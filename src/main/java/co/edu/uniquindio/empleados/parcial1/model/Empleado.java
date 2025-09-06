@@ -7,6 +7,7 @@ public class Empleado {
     private int edad;
     private double salario;
     private int numeroHorasTrabajo;
+    private TipoContrato tipoContrato; //la clase enum se puede usar en una variable
 
     public Empleado() {
     }
