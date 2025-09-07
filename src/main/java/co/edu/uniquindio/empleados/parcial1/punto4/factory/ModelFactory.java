@@ -1,9 +1,6 @@
 package co.edu.uniquindio.empleados.parcial1.punto4.factory;
 
-import co.edu.uniquindio.empleados.parcial1.punto4.model.EmpresaTransporte;
-import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
-import co.edu.uniquindio.empleados.parcial1.punto4.model.VehiculoCarga;
-import co.edu.uniquindio.empleados.parcial1.punto4.model.VehiculoTransporte;
+import co.edu.uniquindio.empleados.parcial1.punto4.model.*;
 import co.edu.uniquindio.empleados.parcial1.punto4.services.IModelFactoryServices;
 
 public class ModelFactory implements IModelFactoryServices {
@@ -63,15 +60,7 @@ public class ModelFactory implements IModelFactoryServices {
         return empresaTransporte;
     }
 
-    @Override
-    public String buscarVehiculoCargaPlaca(String placa) {
-        return "";
-    }
-
-    @Override
-    public String buscarPropietarioNombre(String nombre) {
-        return "";
-    }
+    //CRUD Propietario
 
     @Override
     public boolean agregarPropietario(String nombre, String cedula, String email, String celular) {
@@ -91,5 +80,49 @@ public class ModelFactory implements IModelFactoryServices {
     @Override
     public boolean actualizarPropietario(String nombre, String cedula, String email, String celular) {
         return empresaTransporte.actualizarPropietario(nombre, cedula, email, celular);
+    }
+
+    //CRUD Usuario
+
+    @Override
+    public boolean agregarUsuario(int edad, String placaVehiculo) {
+        return false;
+    }
+
+    @Override
+    public Usuario obtenerUsuario(int edad) {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarUsuario(int edad) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarUsuario(int edad, String placaVehiculo) {
+        return false;
+    }
+
+    //CRUD Vehiculo
+
+    @Override
+    public boolean agregarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return false;
+    }
+
+    @Override
+    public Vehiculo obtenerVehiculo(String placa) {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarVehiculo(String placa) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return false;
     }
 }

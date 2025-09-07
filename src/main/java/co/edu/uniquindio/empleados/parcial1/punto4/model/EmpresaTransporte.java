@@ -54,6 +54,8 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         this.listaUsuarios = listaUsuarios;
     }
 
+    //CRUD Propietario
+
     @Override
     public boolean agregarPropietario(String nombre, String cedula, String email, String celular) {
         Propietario propietario = obtenerPropietario(cedula);
@@ -106,5 +108,49 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         }else{
             return false;
         }
+    }
+
+    //CRUD Usuario
+
+    @Override
+    public boolean agregarUsuario(int edad, String placaVehiculo) {
+        return false;
+    }
+
+    @Override
+    public Usuario obtenerUsuario(int edad) {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarUsuario(int edad) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarUsuario(int edad, String placaVehiculo) {
+        return false;
+    }
+
+    //CRUD Vehiculo
+
+    @Override
+    public boolean agregarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return false;
+    }
+
+    @Override
+    public Vehiculo obtenerVehiculo(String placa) {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarVehiculo(String placa) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return false;
     }
 }
