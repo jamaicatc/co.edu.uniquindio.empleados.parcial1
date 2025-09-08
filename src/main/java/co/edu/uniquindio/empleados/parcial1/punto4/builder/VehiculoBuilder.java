@@ -1,6 +1,7 @@
 package co.edu.uniquindio.empleados.parcial1.punto4.builder;
 
 import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
+import co.edu.uniquindio.empleados.parcial1.punto4.model.Vehiculo;
 
 import java.util.ArrayList;
 
@@ -33,12 +34,16 @@ public class VehiculoBuilder {
     }
 
     public VehiculoBuilder propietarioAsociado(Propietario propietarioAsociado){
-        this.placa = placa;
+        this.propietarioAsociado = propietarioAsociado;
         return this;
     }
 
     public VehiculoBuilder listaPropietariosAsociados(ArrayList<Propietario> listaPropietariosAsociados){
-        this.placa = placa;
+        this.listaPropietariosAsociados = listaPropietariosAsociados;
         return this;
+    }
+
+    public Vehiculo build(){
+        return new Vehiculo(placa, modelo, marca, color, propietarioAsociado);
     }
 }

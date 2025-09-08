@@ -1,5 +1,7 @@
 package co.edu.uniquindio.empleados.parcial1.punto4.model;
 
+import co.edu.uniquindio.empleados.parcial1.punto4.builder.VehiculoCargaBuilder;
+import co.edu.uniquindio.empleados.parcial1.punto4.builder.VehiculoTransporteBuilder;
 import co.edu.uniquindio.empleados.parcial1.punto4.services.IEmpresaTransporteServices;
 
 import java.util.ArrayList;
@@ -115,11 +117,11 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     @Override
     public boolean agregarUsuario(int edad, String placaVehiculo) {
         Usuario usuario = obtenerUsuario(edad);
-        Vehiculo vehiculo = obtenerVehiculo(placaVehiculo);
-        if (usuario == null){
+        Vehiculo vehiculo = obtenerVehiculo("transporte",placaVehiculo);
+        if (usuario == null && vehiculo != null){
             usuario = new Usuario();
             usuario.setEdad(edad);
-//            usuario.setVehiculoAsociado(vehiculo);
+            usuario.setVehiculoAsociado(((VehiculoTransporte) vehiculo));
             getListaUsuarios().add(usuario);
             return true;
         }else{
@@ -153,10 +155,10 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     @Override
     public boolean actualizarUsuario(int edad, String placaVehiculo) {
         Usuario usuario = obtenerUsuario(edad);
-        Vehiculo vehiculo = obtenerVehiculo(placaVehiculo);
+        Vehiculo vehiculo = obtenerVehiculo("transporte",placaVehiculo);
         if (usuario != null){
             usuario.setEdad(edad);
-//            usuario.setVehiculoAsociado(vehiculo);
+            usuario.setVehiculoAsociado(((VehiculoTransporte) vehiculo));
             return true;
         }else{
             return false;
@@ -166,22 +168,102 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     //CRUD Vehiculo
 
     @Override
-    public boolean agregarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+    public boolean agregarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        Vehiculo vehiculo = obtenerVehiculo(tipoVehiculo, placa);
+        if (vehiculo == null){
+            if ("carga".equalsIgnoreCase(tipoVehiculo)){
+                VehiculoCargaBuilder builder = new VehiculoCargaBuilder();
+                builder.setPlaca(placa);
+                builder.setModelo(modelo);
+                builder.setMarca(marca);
+                builder.setColor(color);
+                builder.setPropietario(propietarioAsociado);
+                //atributos faltantes de vehiculo de carga
+                VehiculoCarga vehiculoCarga = (VehiculoCarga)  builder.build();
+                listaVehiculosCarga.add(vehiculoCarga);
+            } else if ("transporte".equalsIgnoreCase(tipoVehiculo)){
+                VehiculoTransporteBuilder builder = new VehiculoTransporteBuilder();
+                builder.setPlaca(placa);
+                builder.setModelo(modelo);
+                builder.setMarca(marca);
+                builder.setColor(color);
+                builder.setPropietario(propietarioAsociado);
+                //atributos faltantes de vehiculo de transporte
+                VehiculoTransporte vehiculoTransporte = (VehiculoTransporte) builder.build();
+                listaVehiculosTransporte.add(vehiculoTransporte);
+            }else{
+                return false;
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
-    public Vehiculo obtenerVehiculo(String placa) {
+    public Vehiculo obtenerVehiculo(String tipoVehiculo, String placa) {
+        if("carga".equalsIgnoreCase(tipoVehiculo)){
+            for (Vehiculo v: listaVehiculosCarga){
+                if (v.getPlaca().equalsIgnoreCase(placa)){
+                    return v;
+                }
+            }
+        }else if("transporte".equalsIgnoreCase(tipoVehiculo)){
+            for (Vehiculo v: listaVehiculosTransporte){
+                if (v.getPlaca().equalsIgnoreCase(placa)){
+                    return v;
+                }
+            }
+        }
         return null;
     }
 
     @Override
-    public boolean eliminarVehiculo(String placa) {
+    public boolean eliminarVehiculo(String tipoVehiculo, String placa) {
+        if ("carga".equalsIgnoreCase(tipoVehiculo)){
+            return listaVehiculosCarga.removeIf(v -> v.getPlaca().equalsIgnoreCase(placa));
+        }else if("transporte".equalsIgnoreCase(tipoVehiculo)){
+            return listaVehiculosTransporte.removeIf(v -> v.getPlaca().equalsIgnoreCase(placa));
+        }
         return false;
     }
 
     @Override
-    public boolean actualizarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+    public boolean actualizarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        if ("carga".equalsIgnoreCase(tipoVehiculo)) {
+            for (VehiculoCarga v : listaVehiculosCarga) {
+                if (v.getPlaca().equalsIgnoreCase(placa)) {
+                    VehiculoCargaBuilder builder = new VehiculoCargaBuilder();
+                    builder.setPlaca(placa);
+                    builder.setModelo(modelo);
+                    builder.setMarca(marca);
+                    builder.setColor(color);
+                    builder.setPropietario(propietarioAsociado);
+                    // atributos propios de VehiculoCarga
+                    VehiculoCarga nuevo = (VehiculoCarga) builder.build();
+
+                    listaVehiculosCarga.remove(v);
+                    listaVehiculosCarga.add(nuevo);
+                    return true;
+                }
+            }
+        } else if ("transporte".equalsIgnoreCase(tipoVehiculo)) {
+            for (VehiculoTransporte v : listaVehiculosTransporte) {
+                if (v.getPlaca().equalsIgnoreCase(placa)) {
+                    VehiculoTransporteBuilder builder = new VehiculoTransporteBuilder();
+                    builder.setPlaca(placa);
+                    builder.setModelo(modelo);
+                    builder.setMarca(marca);
+                    builder.setColor(color);
+                    builder.setPropietario(propietarioAsociado);
+                    // atributos propios de VehiculoTransporte
+                    VehiculoTransporte nuevo = (VehiculoTransporte) builder.build();
+
+                    listaVehiculosTransporte.remove(v);
+                    listaVehiculosTransporte.add(nuevo);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

@@ -107,22 +107,22 @@ public class ModelFactory implements IModelFactoryServices {
     //CRUD Vehiculo
 
     @Override
-    public boolean agregarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
-        return empresaTransporte.agregarVehiculo(placa, modelo, marca, color, propietarioAsociado);
+    public boolean agregarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return empresaTransporte.agregarVehiculo(tipoVehiculo, placa, modelo, marca, color, propietarioAsociado);
     }
 
     @Override
-    public Vehiculo obtenerVehiculo(String placa) {
-        return empresaTransporte.obtenerVehiculo(placa);
+    public Vehiculo obtenerVehiculo(String tipoVehiculo, String placa) {
+        return empresaTransporte.obtenerVehiculo(tipoVehiculo, placa);
     }
 
     @Override
-    public boolean eliminarVehiculo(String placa) {
-        return empresaTransporte.eliminarVehiculo(placa);
+    public boolean eliminarVehiculo(String tipoVehiculo, String placa) {
+        return empresaTransporte.eliminarVehiculo(tipoVehiculo, placa);
     }
 
     @Override
-    public boolean actualizarVehiculo(String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
-        return empresaTransporte.actualizarVehiculo(placa, modelo, marca, color, propietarioAsociado);
+    public boolean actualizarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
+        return empresaTransporte.actualizarVehiculo(tipoVehiculo, placa, modelo, marca, color, propietarioAsociado);
     }
 }

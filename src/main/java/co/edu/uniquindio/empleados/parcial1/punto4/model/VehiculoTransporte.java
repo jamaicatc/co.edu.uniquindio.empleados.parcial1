@@ -9,7 +9,8 @@ public class VehiculoTransporte extends Vehiculo{
     public VehiculoTransporte() {
     }
 
-    public VehiculoTransporte(int maximoPasajeros) {
+    public VehiculoTransporte(String placa, String modelo, String marca, String color, Propietario propietarioAsociado, int maximoPasajeros) {
+        super(placa, modelo, marca, color, propietarioAsociado);
         this.maximoPasajeros = maximoPasajeros;
     }
 
