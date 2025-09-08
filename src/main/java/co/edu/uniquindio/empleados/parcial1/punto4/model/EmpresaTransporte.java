@@ -114,22 +114,53 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
 
     @Override
     public boolean agregarUsuario(int edad, String placaVehiculo) {
-        return false;
+        Usuario usuario = obtenerUsuario(edad);
+        Vehiculo vehiculo = obtenerVehiculo(placaVehiculo);
+        if (usuario == null){
+            usuario = new Usuario();
+            usuario.setEdad(edad);
+//            usuario.setVehiculoAsociado(vehiculo);
+            getListaUsuarios().add(usuario);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public Usuario obtenerUsuario(int edad) {
-        return null;
+        Usuario usuarioEncontrado = null;
+        for(Usuario usuario: getListaUsuarios()){
+            if (usuario.getEdad() == edad){
+                usuarioEncontrado = usuario;
+                break;
+            }
+        }
+        return usuarioEncontrado;
     }
 
     @Override
     public boolean eliminarUsuario(int edad) {
-        return false;
+        Usuario usuario = obtenerUsuario(edad);
+        if(usuario != null){
+            getListaUsuarios().remove(usuario);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean actualizarUsuario(int edad, String placaVehiculo) {
-        return false;
+        Usuario usuario = obtenerUsuario(edad);
+        Vehiculo vehiculo = obtenerVehiculo(placaVehiculo);
+        if (usuario != null){
+            usuario.setEdad(edad);
+//            usuario.setVehiculoAsociado(vehiculo);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //CRUD Vehiculo
