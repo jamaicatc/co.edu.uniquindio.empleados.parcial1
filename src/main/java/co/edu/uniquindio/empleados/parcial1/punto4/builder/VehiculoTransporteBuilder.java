@@ -12,6 +12,7 @@ public class VehiculoTransporteBuilder implements IVehiculoBuilder {
     private String color;
     private Propietario propietarioAsociado;
     private int maximoPasajeros;
+    private int numeroPasajeros;
 
     @Override
     public void setPlaca(String placa) {
@@ -42,8 +43,12 @@ public class VehiculoTransporteBuilder implements IVehiculoBuilder {
         this.maximoPasajeros = maximoPasajeros;
     }
 
+    public void setNumeroPasajeros(int numeroPasajeros) {
+        this.numeroPasajeros = numeroPasajeros;
+    }
+
     @Override
     public Vehiculo build() {
-        return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado, maximoPasajeros);
+        return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado, maximoPasajeros, numeroPasajeros);
     }
 }

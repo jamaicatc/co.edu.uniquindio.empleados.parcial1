@@ -56,6 +56,13 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         this.listaUsuarios = listaUsuarios;
     }
 
+    public int pasajerosTransportados(){
+        int totalPasajeros = 0;
+        for (VehiculoTransporte vt: listaVehiculosTransporte){
+            totalPasajeros += vt.getNumeroPasajeros();
+        }
+        return totalPasajeros;
+    }
     //CRUD Propietario
 
     @Override
