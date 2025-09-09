@@ -63,6 +63,16 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         }
         return totalPasajeros;
     }
+
+    public int usuariosMovilizadosTransporte(String placa){
+        obtenerVehiculo("transporte", placa);
+        int totalUsuarios = 0;
+        for (Usuario u: listaUsuarios){
+            if(u.getVehiculoAsociado().getPlaca().equalsIgnoreCase(placa)){
+                totalUsuarios++;
+            }
+        } return totalUsuarios;
+    }
     //CRUD Propietario
 
     @Override
