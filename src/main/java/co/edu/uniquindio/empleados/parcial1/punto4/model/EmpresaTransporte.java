@@ -73,6 +73,15 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
             }
         } return totalUsuarios;
     }
+
+    public int usuariosMayoresEdad(){
+        int totalMayores = 0;
+        for (Usuario u: listaUsuarios){
+            if(u.getEdad() >= 18){
+                totalMayores++;
+            }
+        } return totalMayores;
+    }
     //CRUD Propietario
 
     @Override
