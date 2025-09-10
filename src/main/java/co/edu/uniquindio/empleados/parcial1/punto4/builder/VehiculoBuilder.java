@@ -43,7 +43,4 @@ public class VehiculoBuilder {
         return this;
     }
 
-    public Vehiculo build(){
-        return new Vehiculo(placa, modelo, marca, color, propietarioAsociado);
-    }
 }

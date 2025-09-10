@@ -4,13 +4,13 @@ import co.edu.uniquindio.empleados.parcial1.punto4.builder.VehiculoBuilder;
 
 import java.util.ArrayList;
 
-public class Vehiculo {
-    private String placa;
-    private String modelo;
-    private String marca;
-    private String color;
-    private Propietario propietarioAsociado;
-    private ArrayList<Propietario> listaPropietariosAsociados;
+public abstract class Vehiculo {
+    protected String placa;
+    protected String modelo;
+    protected String marca;
+    protected String color;
+    protected Propietario propietarioAsociado;
+    protected ArrayList<Propietario> listaPropietariosAsociados;
 
     public Vehiculo() {
     }

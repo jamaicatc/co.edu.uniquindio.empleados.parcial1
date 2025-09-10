@@ -32,33 +32,27 @@ public class ModelFactory implements IModelFactoryServices {
         propietario2.setCedula("2233");
         propietario2.setEmail("sofia@gmail.com");
         propietario2.setCelular("314882");
-        VehiculoCargaBuilder builderCarga = new VehiculoCargaBuilder();
-        builderCarga.setPlaca("ABC123");
-        builderCarga.setModelo("2020");
-        builderCarga.setMarca("Chevrolet");
-        builderCarga.setColor("Rojo");
-        builderCarga.setPropietario(propietario);
-        builderCarga.setCapacidadCarga(200);
-        builderCarga.setNumeroEjes(3);
-        VehiculoCarga vehiculoCarga = (VehiculoCarga) builderCarga.build();
-        propietario.setVehiculoPrincipal(vehiculoCarga);
-        propietario.getListaVehiculosAsociados().add(vehiculoCarga);
-        empresa.getListaVehiculosCarga().add(vehiculoCarga);
-        VehiculoTransporteBuilder builderTransporte = new VehiculoTransporteBuilder();
-        builderTransporte.setPlaca("GHI789");
-        builderTransporte.setModelo("2021");
-        builderTransporte.setMarca("Toyota");
-        builderTransporte.setColor("Blanco");
-        builderTransporte.setPropietario(propietario2);
-        builderTransporte.setMaximoPasajeros(30);
-        builderTransporte.setNumeroPasajeros(52);
-        VehiculoTransporte vehiculoTransporte = (VehiculoTransporte) builderTransporte.build();
-        empresa.getListaVehiculosTransporte().add(vehiculoTransporte);
-        propietario2.setVehiculoPrincipal(vehiculoTransporte);
-        propietario2.getListaVehiculosAsociados().add(vehiculoTransporte);
-        empresa.getListaPropietarios().add(propietario);
-        empresa.getListaPropietarios().add(propietario2);
-        empresa.getListaVehiculosTransporte().add(vehiculoTransporte);
+        VehiculoCarga vehiculoCargaInicializado = new VehiculoCargaBuilder()
+                .placa("ABC123")
+                .modelo("2022")
+                .marca("Volvo")
+                .color("Rojo")
+                .capacidadCarga(5000)
+                .build();
+        propietario.setVehiculoPrincipal(vehiculoCargaInicializado);
+        propietario.getListaVehiculosAsociados().add(vehiculoCargaInicializado);
+        empresa.getListaVehiculosCarga().add(vehiculoCargaInicializado);
+        VehiculoTransporte vehiculoTransporteInicializado = new VehiculoTransporteBuilder()
+                .placa("ABC123")
+                .modelo("2022")
+                .marca("Volvo")
+                .color("Rojo")
+                .maximoPasajeros(50)
+                .numeroPasajeros(22)
+                .build();
+        propietario.setVehiculoPrincipal(vehiculoTransporteInicializado);
+        propietario.getListaVehiculosAsociados().add(vehiculoTransporteInicializado);
+        empresa.getListaVehiculosTransporte().add(vehiculoTransporteInicializado);
         this.empresaTransporte = empresa;
         return empresa;
     }

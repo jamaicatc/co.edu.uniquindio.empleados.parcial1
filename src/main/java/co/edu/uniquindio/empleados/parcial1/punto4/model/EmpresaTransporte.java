@@ -198,24 +198,23 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         Vehiculo vehiculo = obtenerVehiculo(tipoVehiculo, placa);
         if (vehiculo == null){
             if ("carga".equalsIgnoreCase(tipoVehiculo)){
-                VehiculoCargaBuilder builder = new VehiculoCargaBuilder();
-                builder.setPlaca(placa);
-                builder.setModelo(modelo);
-                builder.setMarca(marca);
-                builder.setColor(color);
-                builder.setPropietario(propietarioAsociado);
-                //atributos faltantes de vehiculo de carga
-                VehiculoCarga vehiculoCarga = (VehiculoCarga)  builder.build();
+                VehiculoCarga vehiculoCarga = new VehiculoCargaBuilder()
+                        .placa("ABC123")
+                        .modelo("2022")
+                        .marca("Volvo")
+                        .color("Rojo")
+                        .capacidadCarga(5000)
+                        .build();
                 listaVehiculosCarga.add(vehiculoCarga);
             } else if ("transporte".equalsIgnoreCase(tipoVehiculo)){
-                VehiculoTransporteBuilder builder = new VehiculoTransporteBuilder();
-                builder.setPlaca(placa);
-                builder.setModelo(modelo);
-                builder.setMarca(marca);
-                builder.setColor(color);
-                builder.setPropietario(propietarioAsociado);
-                //atributos faltantes de vehiculo de transporte
-                VehiculoTransporte vehiculoTransporte = (VehiculoTransporte) builder.build();
+                VehiculoTransporte vehiculoTransporte = new VehiculoTransporteBuilder()
+                        .placa("XYZ789")
+                        .modelo("2024")
+                        .marca("Mercedes-Benz")
+                        .color("Azul")
+                        .maximoPasajeros(50)
+                        .numeroPasajeros(22)
+                        .build();
                 listaVehiculosTransporte.add(vehiculoTransporte);
             }else{
                 return false;
@@ -258,34 +257,35 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         if ("carga".equalsIgnoreCase(tipoVehiculo)) {
             for (VehiculoCarga v : listaVehiculosCarga) {
                 if (v.getPlaca().equalsIgnoreCase(placa)) {
-                    VehiculoCargaBuilder builder = new VehiculoCargaBuilder();
-                    builder.setPlaca(placa);
-                    builder.setModelo(modelo);
-                    builder.setMarca(marca);
-                    builder.setColor(color);
-                    builder.setPropietario(propietarioAsociado);
-                    // atributos propios de VehiculoCarga
-                    VehiculoCarga nuevo = (VehiculoCarga) builder.build();
-
+                    VehiculoCarga vehiculoCarga = new VehiculoCargaBuilder()
+                            .placa(placa)
+                            .modelo(modelo)
+                            .marca(marca)
+                            .color(color)
+                            .propietario(propietarioAsociado)
+                            .capacidadCarga(v.getCapacidadCarga()) // Mantener la capacidad de carga original
+                            .build();
                     listaVehiculosCarga.remove(v);
-                    listaVehiculosCarga.add(nuevo);
+                    listaVehiculosCarga.add(vehiculoCarga);
+
                     return true;
                 }
             }
         } else if ("transporte".equalsIgnoreCase(tipoVehiculo)) {
             for (VehiculoTransporte v : listaVehiculosTransporte) {
                 if (v.getPlaca().equalsIgnoreCase(placa)) {
-                    VehiculoTransporteBuilder builder = new VehiculoTransporteBuilder();
-                    builder.setPlaca(placa);
-                    builder.setModelo(modelo);
-                    builder.setMarca(marca);
-                    builder.setColor(color);
-                    builder.setPropietario(propietarioAsociado);
-                    // atributos propios de VehiculoTransporte
-                    VehiculoTransporte nuevo = (VehiculoTransporte) builder.build();
-
+                    VehiculoTransporte vehiculoTransporte = new VehiculoTransporteBuilder()
+                            .placa(placa)
+                            .modelo(modelo)
+                            .marca(marca)
+                            .color(color)
+                            .propietario(propietarioAsociado)
+                            .maximoPasajeros(v.getMaximoPasajeros()) // Mantener el máximo de pasajeros original
+                            .numeroPasajeros(v.getNumeroPasajeros()) // Mantener el número de
+                            .build();
                     listaVehiculosTransporte.remove(v);
-                    listaVehiculosTransporte.add(nuevo);
+                    listaVehiculosTransporte.add(vehiculoTransporte);
+
                     return true;
                 }
             }

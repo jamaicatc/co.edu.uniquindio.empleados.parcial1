@@ -1,54 +1,60 @@
 package co.edu.uniquindio.empleados.parcial1.punto4.builder;
 
 import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
-import co.edu.uniquindio.empleados.parcial1.punto4.model.Vehiculo;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.VehiculoCarga;
 import co.edu.uniquindio.empleados.parcial1.punto4.services.IVehiculoBuilder;
 
-public class VehiculoCargaBuilder implements IVehiculoBuilder {
-    private String placa;
-    private String modelo;
-    private String marca;
-    private String color;
-    private Propietario propietarioAsociado;
-    private double CapacidadCarga;
-    private int numeroEjes;
+public class VehiculoCargaBuilder implements IVehiculoBuilder<VehiculoCarga> {
+    protected String placa;
+    protected String modelo;
+    protected String marca;
+    protected String color;
+    protected Propietario propietarioAsociado;
+    protected double CapacidadCarga;
+    protected int numeroEjes;
 
     @Override
-    public void setPlaca(String placa) {
+    public VehiculoCargaBuilder placa(String placa) {
         this.placa = placa;
+        return this;
     }
 
     @Override
-    public void setModelo(String modelo) {
+    public VehiculoCargaBuilder modelo(String modelo) {
         this.modelo = modelo;
+        return this;
     }
 
     @Override
-    public void setMarca(String marca) {
+    public VehiculoCargaBuilder marca(String marca) {
         this.marca = marca;
+        return this;
     }
 
     @Override
-    public void setColor(String color) {
+    public VehiculoCargaBuilder color(String color) {
         this.color = color;
+        return this;
     }
 
     @Override
-    public void setPropietario(Propietario propietario) {
+    public VehiculoCargaBuilder propietario(Propietario propietario) {
         this.propietarioAsociado = propietario;
+        return this;
     }
 
-    public void setCapacidadCarga(double capacidadCarga) {
-        CapacidadCarga = capacidadCarga;
+    public VehiculoCargaBuilder capacidadCarga(double capacidadCarga) {
+        this.CapacidadCarga = capacidadCarga;
+        return this;
     }
 
-    public void setNumeroEjes(int numeroEjes) {
+    public VehiculoCargaBuilder numeroEjes(int numeroEjes) {
         this.numeroEjes = numeroEjes;
+        return this;
     }
 
     @Override
-    public Vehiculo build() {
+    public VehiculoCarga build() {
         return new VehiculoCarga(placa, modelo, marca, color, propietarioAsociado, CapacidadCarga, numeroEjes);
     }
 }

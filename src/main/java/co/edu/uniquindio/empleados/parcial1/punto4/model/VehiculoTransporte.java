@@ -28,7 +28,4 @@ public class VehiculoTransporte extends Vehiculo{
         return listaUsuariosAsociados;
     }
 
-    public void setListaUsuariosAsociados(ArrayList<Usuario> listaUsuariosAsociados) {
-        this.listaUsuariosAsociados = listaUsuariosAsociados;
-    }
 }

@@ -1,54 +1,60 @@
 package co.edu.uniquindio.empleados.parcial1.punto4.builder;
 
 import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
-import co.edu.uniquindio.empleados.parcial1.punto4.model.Vehiculo;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.VehiculoTransporte;
 import co.edu.uniquindio.empleados.parcial1.punto4.services.IVehiculoBuilder;
 
-public class VehiculoTransporteBuilder implements IVehiculoBuilder {
-    private String placa;
-    private String modelo;
-    private String marca;
-    private String color;
-    private Propietario propietarioAsociado;
-    private int maximoPasajeros;
-    private int numeroPasajeros;
+public class VehiculoTransporteBuilder implements IVehiculoBuilder<VehiculoTransporte> {
+    protected String placa;
+    protected String modelo;
+    protected String marca;
+    protected String color;
+    protected Propietario propietarioAsociado;
+    protected int maximoPasajeros;
+    protected int numeroPasajeros;
 
     @Override
-    public void setPlaca(String placa) {
+    public VehiculoTransporteBuilder placa(String placa) {
         this.placa = placa;
+        return this;
     }
 
     @Override
-    public void setModelo(String modelo) {
+    public VehiculoTransporteBuilder modelo(String modelo) {
         this.modelo = modelo;
+        return this;
     }
 
     @Override
-    public void setMarca(String marca) {
+    public VehiculoTransporteBuilder marca(String marca) {
         this.marca = marca;
+        return this;
     }
 
     @Override
-    public void setColor(String color) {
+    public VehiculoTransporteBuilder color(String color) {
         this.color = color;
+        return this;
     }
 
     @Override
-    public void setPropietario(Propietario propietario) {
+    public VehiculoTransporteBuilder propietario(Propietario propietario) {
         this.propietarioAsociado = propietario;
+        return this;
     }
 
-    public void setMaximoPasajeros(int maximoPasajeros) {
+    public VehiculoTransporteBuilder maximoPasajeros(int maximoPasajeros) {
         this.maximoPasajeros = maximoPasajeros;
+        return this;
     }
 
-    public void setNumeroPasajeros(int numeroPasajeros) {
+    public VehiculoTransporteBuilder numeroPasajeros(int numeroPasajeros) {
         this.numeroPasajeros = numeroPasajeros;
+        return this;
     }
 
     @Override
-    public Vehiculo build() {
+    public VehiculoTransporte build() {
         return new VehiculoTransporte(placa, modelo, marca, color, propietarioAsociado, maximoPasajeros, numeroPasajeros);
     }
 }
