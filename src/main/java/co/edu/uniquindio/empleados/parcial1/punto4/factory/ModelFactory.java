@@ -101,8 +101,8 @@ public class ModelFactory implements IModelFactoryServices {
     }
 
     @Override
-    public boolean actualizarUsuario(int edad, String placaVehiculo) {
-        return empresaTransporte.actualizarUsuario(edad, placaVehiculo);
+    public boolean actualizarUsuario(int edad) {
+        return empresaTransporte.actualizarUsuario(edad);
     }
 
     //CRUD Vehiculo

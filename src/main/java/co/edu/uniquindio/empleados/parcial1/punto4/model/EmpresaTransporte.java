@@ -179,12 +179,10 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     }
 
     @Override
-    public boolean actualizarUsuario(int edad, String placaVehiculo) {
+    public boolean actualizarUsuario(int edad) {
         Usuario usuario = obtenerUsuario(edad);
-        Vehiculo vehiculo = obtenerVehiculo("transporte",placaVehiculo);
         if (usuario != null){
             usuario.setEdad(edad);
-            usuario.setVehiculoAsociado(((VehiculoTransporte) vehiculo));
             return true;
         }else{
             return false;
@@ -199,21 +197,18 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
         if (vehiculo == null){
             if ("carga".equalsIgnoreCase(tipoVehiculo)){
                 VehiculoCarga vehiculoCarga = new VehiculoCargaBuilder()
-                        .placa("ABC123")
-                        .modelo("2022")
-                        .marca("Volvo")
-                        .color("Rojo")
-                        .capacidadCarga(5000)
+                        .placa(placa)
+                        .modelo(modelo)
+                        .marca(marca)
+                        .color(color)
                         .build();
                 listaVehiculosCarga.add(vehiculoCarga);
             } else if ("transporte".equalsIgnoreCase(tipoVehiculo)){
                 VehiculoTransporte vehiculoTransporte = new VehiculoTransporteBuilder()
-                        .placa("XYZ789")
-                        .modelo("2024")
-                        .marca("Mercedes-Benz")
-                        .color("Azul")
-                        .maximoPasajeros(50)
-                        .numeroPasajeros(22)
+                        .placa(placa)
+                        .modelo(modelo)
+                        .marca(marca)
+                        .color(color)
                         .build();
                 listaVehiculosTransporte.add(vehiculoTransporte);
             }else{

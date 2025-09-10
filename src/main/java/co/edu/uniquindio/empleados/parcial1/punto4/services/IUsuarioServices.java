@@ -6,5 +6,5 @@ public interface IUsuarioServices {
     boolean agregarUsuario(int edad, String placaVehiculo);
     Usuario obtenerUsuario(int edad);
     boolean eliminarUsuario(int edad);
-    boolean actualizarUsuario(int edad, String placaVehiculo);
+    boolean actualizarUsuario(int edad);
 }

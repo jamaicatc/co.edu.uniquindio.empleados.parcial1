@@ -75,6 +75,6 @@ public class Propietario {
                 "\n" + "Nombre: " + nombre + "\n" +
                 "Cedula: " + cedula + "\n" +
                 "Email: " + email + "\n" +
-                "Celular: " + celular + "\n";
+                "Celular: " + celular;
     }
 }
