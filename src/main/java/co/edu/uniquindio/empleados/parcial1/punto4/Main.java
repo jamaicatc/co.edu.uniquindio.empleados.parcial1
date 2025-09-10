@@ -2,8 +2,10 @@ package co.edu.uniquindio.empleados.parcial1.punto4;
 
 import co.edu.uniquindio.empleados.parcial1.punto4.factory.ModelFactory;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.EmpresaTransporte;
+import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
 
 import javax.swing.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,17 +16,35 @@ public class Main {
 
     private static void crudPropietario(ModelFactory modelFactory) {
         agregarPropietario(modelFactory);
-//        obtenerPropietario(modelFactory);
-//        eliminarPropietario(modelFactory);
-//        actualizarPropietario(modelFactory);
+        obtenerPropietario(modelFactory);
+        eliminarPropietario(modelFactory);
+        actualizarPropietario(modelFactory);
     }
+
+    //CRUD Propietario
 
     private static void agregarPropietario(ModelFactory modelFactory) {
-        Boolean resultado = modelFactory.agregarPropietario("Juan jose", "1234", "juan@gmail.com", "123456");
-
-        if (resultado)
-            JOptionPane.showMessageDialog(null, "Propietario agregado exitosamente");
-        else
-            JOptionPane.showMessageDialog(null, "El propietario ya existe");
+        boolean agregado = modelFactory.agregarPropietario("Arturo", "123456789", "arturo@gmail.com", "3001234567");
+        System.out.println(agregado ? "Propietario agregado exitosamente" : "No se pudo agregar el propietario");
     }
+
+    private static void obtenerPropietario(ModelFactory modelFactory){
+        Propietario propietario = modelFactory.obtenerPropietario("123");
+        if(propietario != null){
+            System.out.println("Propietario encontrado: " + propietario.toString());
+        } else {
+            System.out.println("No se encontró el propietario");
+        }
+    }
+
+    private static void eliminarPropietario(ModelFactory modelFactory){
+        boolean eliminado = modelFactory.eliminarPropietario("123");
+        System.out.println(eliminado ? "Propietario eliminado exitosamente" : "No se pudo eliminar el propietario");
+    }
+
+    private static void actualizarPropietario(ModelFactory modelFactory){
+        boolean actualizado = modelFactory.actualizarPropietario("Sofia Vergara", "2233", "sofia@gmail.com", "314850");
+        System.out.println(actualizado ? "Propietario actualizado exitosamente" : "No se pudo actualizar el propietario");
+    }
+
 }

@@ -68,4 +68,13 @@ public class Propietario {
     public void setListaVehiculosAsociados(ArrayList<Vehiculo> listaVehiculosAsociados) {
         this.listaVehiculosAsociados = listaVehiculosAsociados;
     }
+
+    @Override
+    public String toString() {
+        return
+                "\n" + "Nombre: " + nombre + "\n" +
+                "Cedula: " + cedula + "\n" +
+                "Email: " + email + "\n" +
+                "Celular: " + celular + "\n";
+    }
 }

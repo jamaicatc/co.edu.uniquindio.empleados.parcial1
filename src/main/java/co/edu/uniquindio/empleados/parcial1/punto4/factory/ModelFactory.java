@@ -43,7 +43,7 @@ public class ModelFactory implements IModelFactoryServices {
         VehiculoCarga vehiculoCarga = (VehiculoCarga) builderCarga.build();
         propietario.setVehiculoPrincipal(vehiculoCarga);
         propietario.getListaVehiculosAsociados().add(vehiculoCarga);
-        empresaTransporte.getListaVehiculosCarga().add(vehiculoCarga);
+        empresa.getListaVehiculosCarga().add(vehiculoCarga);
         VehiculoTransporteBuilder builderTransporte = new VehiculoTransporteBuilder();
         builderTransporte.setPlaca("GHI789");
         builderTransporte.setModelo("2021");
@@ -53,13 +53,11 @@ public class ModelFactory implements IModelFactoryServices {
         builderTransporte.setMaximoPasajeros(30);
         builderTransporte.setNumeroPasajeros(52);
         VehiculoTransporte vehiculoTransporte = (VehiculoTransporte) builderTransporte.build();
-        empresaTransporte.getListaVehiculosTransporte().add(vehiculoTransporte);
+        empresa.getListaVehiculosTransporte().add(vehiculoTransporte);
         propietario2.setVehiculoPrincipal(vehiculoTransporte);
         propietario2.getListaVehiculosAsociados().add(vehiculoTransporte);
-        empresaTransporte.getListaVehiculosTransporte().add(vehiculoTransporte);
         empresa.getListaPropietarios().add(propietario);
         empresa.getListaPropietarios().add(propietario2);
-        empresa.getListaVehiculosCarga().add(vehiculoCarga);
         empresa.getListaVehiculosTransporte().add(vehiculoTransporte);
         this.empresaTransporte = empresa;
         return empresa;
