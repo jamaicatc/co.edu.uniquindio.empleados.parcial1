@@ -194,6 +194,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
     @Override
     public boolean agregarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
         Vehiculo vehiculo = obtenerVehiculo(tipoVehiculo, placa);
+        Propietario propietario = obtenerPropietario(propietarioAsociado.getCedula());
         if (vehiculo == null){
             if ("carga".equalsIgnoreCase(tipoVehiculo)){
                 VehiculoCarga vehiculoCarga = new VehiculoCargaBuilder()
@@ -203,6 +204,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
                         .color(color)
                         .build();
                 listaVehiculosCarga.add(vehiculoCarga);
+                propietario.getListaVehiculosAsociados().add(vehiculoCarga);
             } else if ("transporte".equalsIgnoreCase(tipoVehiculo)){
                 VehiculoTransporte vehiculoTransporte = new VehiculoTransporteBuilder()
                         .placa(placa)
@@ -276,7 +278,7 @@ public class EmpresaTransporte implements IEmpresaTransporteServices {
                             .color(color)
                             .propietario(propietarioAsociado)
                             .maximoPasajeros(v.getMaximoPasajeros()) // Mantener el máximo de pasajeros original
-                            .numeroPasajeros(v.getNumeroPasajeros()) // Mantener el número de
+                            .numeroPasajeros(v.getNumeroPasajeros()) // Mantener el número de pasajeros original
                             .build();
                     listaVehiculosTransporte.remove(v);
                     listaVehiculosTransporte.add(vehiculoTransporte);

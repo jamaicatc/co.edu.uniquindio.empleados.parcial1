@@ -27,11 +27,13 @@ public class ModelFactory implements IModelFactoryServices {
         propietario.setCedula("123");
         propietario.setEmail("juan@gmail.com");
         propietario.setCelular("12345");
+        empresa.getListaPropietarios().add(propietario);
         Propietario propietario2 = new Propietario();
         propietario2.setNombre("Sofia Vergara");
         propietario2.setCedula("2233");
         propietario2.setEmail("sofia@gmail.com");
         propietario2.setCelular("314882");
+        empresa.getListaPropietarios().add(propietario2);
         VehiculoCarga vehiculoCargaInicializado = new VehiculoCargaBuilder()
                 .placa("ABC123")
                 .modelo("2022")
@@ -125,5 +127,17 @@ public class ModelFactory implements IModelFactoryServices {
     @Override
     public boolean actualizarVehiculo(String tipoVehiculo, String placa, String modelo, String marca, String color, Propietario propietarioAsociado) {
         return empresaTransporte.actualizarVehiculo(tipoVehiculo, placa, modelo, marca, color, propietarioAsociado);
+    }
+
+    public int usuariosMovilizadosTransporte(String placa) {
+        return empresaTransporte.usuariosMovilizadosTransporte(placa);
+    }
+
+    public int pasajerosTransportados() {
+        return empresaTransporte.pasajerosTransportados();
+    }
+
+    public int usuariosMayoresEdad() {
+        return empresaTransporte.usuariosMayoresEdad();
     }
 }

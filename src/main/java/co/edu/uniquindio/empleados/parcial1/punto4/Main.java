@@ -4,6 +4,7 @@ import co.edu.uniquindio.empleados.parcial1.punto4.factory.ModelFactory;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.EmpresaTransporte;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.Propietario;
 import co.edu.uniquindio.empleados.parcial1.punto4.model.Usuario;
+import co.edu.uniquindio.empleados.parcial1.punto4.model.Vehiculo;
 
 import javax.swing.*;
 import java.util.Scanner;
@@ -12,8 +13,12 @@ public class Main {
     public static void main(String[] args) {
         ModelFactory modelFactory = ModelFactory.getInstance();
         EmpresaTransporte empresaTransporte = modelFactory.inicializarDatos();
-//        crudPropietario(modelFactory);
-//        crudUsuario(modelFactory);
+        crudPropietario(modelFactory);
+        crudUsuario(modelFactory);
+        crudVehiculo(modelFactory);
+        pasajerosTransportados(modelFactory);
+        usuariosMovilizadosTransporte(modelFactory);
+        usuariosMayoresEdad(modelFactory);
     }
 
     private static void crudPropietario(ModelFactory modelFactory) {
@@ -28,6 +33,13 @@ public class Main {
         obtenerUsuario(modelFactory);
         eliminarUsuario(modelFactory);
         actualizarUsuario(modelFactory);
+    }
+
+    private static void crudVehiculo(ModelFactory modelFactory) {
+        agregarVehiculo(modelFactory);
+        obtenerVehiculo(modelFactory);
+        eliminarVehiculo(modelFactory);
+        actualizarVehiculo(modelFactory);
     }
 
     //CRUD Propietario
@@ -46,7 +58,7 @@ public class Main {
     }
 
     private static void eliminarPropietario(ModelFactory modelFactory){
-        boolean eliminado = modelFactory.eliminarPropietario("123");
+        boolean eliminado = modelFactory.eliminarPropietario("12");
         System.out.println(eliminado ? "Propietario eliminado exitosamente" : "No se pudo eliminar el propietario");
     }
 
@@ -80,5 +92,44 @@ public class Main {
         System.out.println(actualizado ? "Usuario actualizado exitosamente" : "No se pudo actualizar el usuario");
     }
 
+    //CRUD Vehiculo
+    private static void agregarVehiculo(ModelFactory modelFactory) {
+        boolean agregado = modelFactory.agregarVehiculo("carga", "ABC1234", "2020", "Toyota", "Rojo", modelFactory.obtenerPropietario("123"));
+        System.out.println(agregado ? "Vehiculo agregado exitosamente" : "No se pudo agregar el vehiculo");
+    }
+
+    private static void obtenerVehiculo(ModelFactory modelFactory){
+        Vehiculo vehiculo = modelFactory.obtenerVehiculo("carga", "ABC123");
+        if(vehiculo != null){
+            System.out.println("Vehiculo encontrado: " + vehiculo.toString());
+        } else {
+            System.out.println("No se encontró el vehiculo");
+        }
+    }
+
+    private static void eliminarVehiculo(ModelFactory modelFactory){
+        boolean eliminado = modelFactory.eliminarVehiculo("carga", "ABC123");
+        System.out.println(eliminado ? "Vehiculo eliminado exitosamente" : "No se pudo eliminar el vehiculo");
+    }
+
+    private static void actualizarVehiculo(ModelFactory modelFactory){
+        boolean actualizado = modelFactory.actualizarVehiculo("carga", "ABC1234","2056", "mazda", "purpura", modelFactory.obtenerPropietario("123"));
+        System.out.println(actualizado ? "Vehiculo actualizado exitosamente" : "No se pudo actualizar el vehiculo");
+    }
+
+    private static void pasajerosTransportados(ModelFactory modelFactory){
+        int pasajeros = modelFactory.pasajerosTransportados();
+        System.out.println("\n" + "Total pasajeros transportados: " + pasajeros);
+    }
+
+    private static void usuariosMovilizadosTransporte(ModelFactory modelFactory){
+        int usuarios = modelFactory.usuariosMovilizadosTransporte("ABC123");
+        System.out.println("\n" + "Total usuarios movilizados: " + usuarios);
+    }
+
+    private static void usuariosMayoresEdad(ModelFactory modelFactory){
+        int usuarios = modelFactory.usuariosMayoresEdad();
+        System.out.println("\n" + "Total usuarios mayores de edad: " + usuarios);
+    }
 
 }

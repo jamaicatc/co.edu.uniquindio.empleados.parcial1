@@ -50,4 +50,13 @@ public abstract class Vehiculo {
     public ArrayList<Propietario> getListaPropietariosAsociados() {
         return listaPropietariosAsociados;
     }
+
+    @Override
+    public String toString() {
+        return
+                "\n" + "placa: " + placa + '\n' +
+                "modelo: " + modelo + '\n' +
+                "marca: " + marca + '\n' +
+                "color:" + color;
+    }
 }
