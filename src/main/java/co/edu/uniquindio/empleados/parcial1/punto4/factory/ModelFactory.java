@@ -129,12 +129,12 @@ public class ModelFactory implements IModelFactoryServices {
         return empresaTransporte.actualizarVehiculo(tipoVehiculo, placa, modelo, marca, color, propietarioAsociado);
     }
 
-    public int usuariosMovilizadosTransporte(String placa) {
-        return empresaTransporte.usuariosMovilizadosTransporte(placa);
-    }
-
     public int pasajerosTransportados() {
         return empresaTransporte.pasajerosTransportados();
+    }
+
+    public int usuariosMovilizadosTransporte(String placa) {
+        return empresaTransporte.usuariosMovilizadosTransporte(placa);
     }
 
     public int usuariosMayoresEdad() {
