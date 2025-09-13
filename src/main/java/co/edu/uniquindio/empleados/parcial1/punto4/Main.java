@@ -118,15 +118,15 @@ public class Main {
     }
 
     private static void pasajerosTransportados(ModelFactory modelFactory){
-        System.out.printf("Total pasajeros transportados %d", modelFactory.pasajerosTransportados());
+        System.out.printf("\nTotal pasajeros transportados %d", modelFactory.pasajerosTransportados());
     }
 
     private static void usuariosMovilizadosTransporte(ModelFactory modelFactory){
-        System.out.printf("Total de usuarios movilizados en el vehiculo de transporte: %d", modelFactory.usuariosMovilizadosTransporte("ABC123"));
+        System.out.printf("\nTotal de usuarios movilizados en el vehiculo de transporte: %d", modelFactory.usuariosMovilizadosTransporte("ABC123"));
     }
 
     private static void usuariosMayoresEdad(ModelFactory modelFactory){
-        System.out.printf("Total de usuarios mayores de edad: %d", modelFactory.usuariosMayoresEdad());
+        System.out.printf("\nTotal de usuarios mayores de edad: %d", modelFactory.usuariosMayoresEdad());
     }
 
 }
